@@ -1,0 +1,499 @@
+import React, { useState, useEffect } from 'react';
+import { Menu, X, Check, MessageCircle, ChevronDown } from 'lucide-react';
+
+export default function InvioryLanding() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('');
+
+  // Smooth scroll handler
+  const scrollToSection = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+      setIsMenuOpen(false);
+    }
+  };
+
+  // WhatsApp handler - GANTI NOMOR WA KAMU DI SINI
+  const openWhatsApp = (message = '') => {
+    const phoneNumber = '6281234567890'; // GANTI DENGAN NOMOR WA KAMU (format: 628xxx)
+    const defaultMessage = message || 'Halo, saya tertarik dengan jasa undangan digital INVIORY!';
+    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(defaultMessage)}`;
+    window.open(url, '_blank');
+  };
+
+  return (
+    <div className="min-h-screen bg-white">
+      {/* Navigation */}
+      <nav className="fixed top-0 w-full bg-black/95 backdrop-blur-sm z-50 border-b border-yellow-600/20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            <div className="text-2xl font-bold text-yellow-500">INVIORY</div>
+            
+            {/* Desktop Menu */}
+            <div className="hidden md:flex space-x-8">
+              {['Beranda', 'Keunggulan', 'Template', 'Cara Pesan', 'Harga', 'Testimoni'].map((item) => (
+                <button
+                  key={item}
+                  onClick={() => scrollToSection(item.toLowerCase().replace(' ', '-'))}
+                  className="text-white hover:text-yellow-500 transition"
+                >
+                  {item}
+                </button>
+              ))}
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              className="md:hidden text-white"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
+
+          {/* Mobile Menu */}
+          {isMenuOpen && (
+            <div className="md:hidden py-4 space-y-3">
+              {['Beranda', 'Keunggulan', 'Template', 'Cara Pesan', 'Harga', 'Testimoni'].map((item) => (
+                <button
+                  key={item}
+                  onClick={() => scrollToSection(item.toLowerCase().replace(' ', '-'))}
+                  className="block w-full text-left text-white hover:text-yellow-500 transition py-2"
+                >
+                  {item}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <section id="beranda" className="pt-24 pb-16 px-4 bg-gradient-to-br from-black via-gray-900 to-black">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-12 items-center min-h-[80vh]">
+            <div className="text-white space-y-6">
+              <h1 className="text-5xl md:text-6xl font-bold leading-tight">
+                Undangan Digital<br />
+                <span className="text-yellow-500">Elegan & Mudah</span><br />
+                Dibagikan
+              </h1>
+              <p className="text-xl text-gray-300">
+                Ciptakan undangan pernikahan, ulang tahun, atau event spesial Anda dengan desain modern dan interaktif. Hemat, cepat, dan ramah lingkungan.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 pt-4">
+                <button
+                  onClick={() => openWhatsApp()}
+                  className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-4 px-8 rounded-full flex items-center justify-center gap-2 transition transform hover:scale-105"
+                >
+                  <MessageCircle size={20} />
+                  Pesan via WhatsApp
+                </button>
+                <button
+                  onClick={() => scrollToSection('template')}
+                  className="border-2 border-yellow-500 text-yellow-500 hover:bg-yellow-500 hover:text-black font-bold py-4 px-8 rounded-full transition"
+                >
+                  Lihat Template
+                </button>
+              </div>
+            </div>
+            <div className="relative">
+              {/* PLACEHOLDER IMAGE - Ganti dengan gambar hero kamu */}
+              <div className="bg-gradient-to-br from-yellow-600/20 to-yellow-800/20 rounded-3xl h-[500px] flex items-center justify-center border-2 border-yellow-600/30">
+                <div className="text-center text-yellow-500">
+                  <div className="text-6xl mb-4">📱</div>
+                  <p className="text-xl font-semibold">Hero Image</p>
+                  <p className="text-sm text-gray-400 mt-2">Ganti dengan mockup undangan</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="text-center mt-12 animate-bounce">
+          <ChevronDown className="mx-auto text-yellow-500" size={32} />
+        </div>
+      </section>
+
+      {/* Keunggulan Section */}
+      <section id="keunggulan" className="py-20 px-4 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-black mb-4">
+              Kenapa Pilih <span className="text-yellow-500">INVIORY</span>?
+            </h2>
+            <p className="text-gray-600 text-lg">Solusi undangan digital terbaik untuk acara spesial Anda</p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              { icon: '⚡', title: 'Proses Cepat', desc: 'Undangan jadi dalam 1-2 hari kerja' },
+              { icon: '💰', title: 'Hemat Biaya', desc: 'Lebih murah dari undangan cetak' },
+              { icon: '🎨', title: 'Custom Tema', desc: 'Design sesuai keinginan Anda' },
+              { icon: '📱', title: 'Interaktif', desc: 'RSVP, lokasi, countdown, musik' },
+              { icon: '🌍', title: 'Eco-Friendly', desc: 'Ramah lingkungan tanpa kertas' },
+              { icon: '💬', title: 'Support 24/7', desc: 'Tim kami siap membantu kapan saja' }
+            ].map((item, idx) => (
+              <div
+                key={idx}
+                className="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border-2 border-gray-100 hover:border-yellow-500 transition transform hover:scale-105 hover:shadow-xl"
+              >
+                <div className="text-5xl mb-4">{item.icon}</div>
+                <h3 className="text-xl font-bold text-black mb-2">{item.title}</h3>
+                <p className="text-gray-600">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Template Section */}
+      <section id="template" className="py-20 px-4 bg-gradient-to-b from-gray-50 to-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-black mb-4">
+              Contoh <span className="text-yellow-500">Template</span>
+            </h2>
+            <p className="text-gray-600 text-lg">Pilihan desain untuk berbagai acara</p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              { title: 'Wedding Elegant', category: 'Pernikahan', desc: 'Desain klasik & romantis' },
+              { title: 'Birthday Party', category: 'Acara Pribadi', desc: 'Fun & colorful theme' },
+              { title: 'Corporate Event', category: 'Event Perusahaan', desc: 'Professional & modern' }
+            ].map((template, idx) => (
+              <div key={idx} className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition transform hover:scale-105">
+                {/* PLACEHOLDER IMAGE - Ganti dengan screenshot template */}
+                <div className="bg-gradient-to-br from-yellow-500/10 to-yellow-800/10 h-80 flex items-center justify-center border-b-4 border-yellow-500">
+                  <div className="text-center text-yellow-600">
+                    <div className="text-6xl mb-4">🎴</div>
+                    <p className="text-xl font-semibold">{template.title}</p>
+                  </div>
+                </div>
+                <div className="p-6">
+                  <span className="bg-yellow-500 text-black text-xs font-bold px-3 py-1 rounded-full">
+                    {template.category}
+                  </span>
+                  <h3 className="text-xl font-bold text-black mt-3 mb-2">{template.title}</h3>
+                  <p className="text-gray-600 mb-4">{template.desc}</p>
+                  <button
+                    onClick={() => openWhatsApp(`Halo, saya tertarik dengan template ${template.title}`)}
+                    className="w-full bg-black hover:bg-yellow-500 text-white hover:text-black font-bold py-3 rounded-full transition"
+                  >
+                    Pilih Template
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Cara Pemesanan Section */}
+      <section id="cara-pesan" className="py-20 px-4 bg-black text-white">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+              Cara <span className="text-yellow-500">Pemesanan</span>
+            </h2>
+            <p className="text-gray-400 text-lg">3 langkah mudah untuk undangan Anda</p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              { num: '1', title: 'Pilih Template', desc: 'Pilih desain favorit atau request custom' },
+              { num: '2', title: 'Kirim Data', desc: 'Kirimkan detail acara via WhatsApp' },
+              { num: '3', title: 'Undangan Siap', desc: 'Dapatkan link undangan dalam 1-2 hari' }
+            ].map((step, idx) => (
+              <div key={idx} className="text-center relative">
+                <div className="bg-yellow-500 text-black w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+                  {step.num}
+                </div>
+                <h3 className="text-xl font-bold mb-2">{step.title}</h3>
+                <p className="text-gray-400">{step.desc}</p>
+                {idx < 2 && (
+                  <div className="hidden md:block absolute top-8 left-[60%] w-[80%] h-0.5 bg-yellow-500/30"></div>
+                )}
+              </div>
+            ))}
+          </div>
+
+          <div className="text-center mt-12">
+            <button
+              onClick={() => openWhatsApp()}
+              className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-4 px-12 rounded-full inline-flex items-center gap-2 transition transform hover:scale-105"
+            >
+              <MessageCircle size={20} />
+              Mulai Pesan Sekarang
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Harga Section */}
+      <section id="harga" className="py-20 px-4 bg-gradient-to-b from-white to-gray-50">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-black mb-4">
+              Paket <span className="text-yellow-500">Harga</span>
+            </h2>
+            <p className="text-gray-600 text-lg">Pilih paket sesuai kebutuhan Anda</p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                name: 'Basic',
+                price: 'Rp 1.00 - 3.000',
+                features: ['1 Template Standar', '1x Revisi', 'Fitur RSVP', 'Musik Background', 'Support via Chat'],
+                popular: false
+              },
+              {
+                name: 'Standard',
+                price: 'Rp 4.000 - 8.000',
+                features: ['Custom Design', '3x Revisi', 'RSVP + Gallery', 'Countdown Timer', 'Google Maps', 'Support Prioritas'],
+                popular: true
+              },
+              {
+                name: 'Premium',
+                price: 'Rp 10.000 - 15.000',
+                features: ['Design Eksklusif', 'Unlimited Revisi', 'Semua Fitur Lengkap', 'Video Opening', 'Custom Domain', 'Dedicated Support'],
+                popular: false
+              }
+            ].map((pkg, idx) => (
+              <div
+                key={idx}
+                className={`bg-white rounded-2xl p-8 shadow-lg relative ${
+                  pkg.popular ? 'border-4 border-yellow-500 transform scale-105' : 'border-2 border-gray-200'
+                }`}
+              >
+                {pkg.popular && (
+                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                    <span className="bg-yellow-500 text-black text-sm font-bold px-4 py-1 rounded-full">
+                      TERPOPULER
+                    </span>
+                  </div>
+                )}
+                <div className="text-center mb-6">
+                  <h3 className="text-2xl font-bold text-black mb-2">{pkg.name}</h3>
+                  <div className="text-4xl font-bold text-yellow-500 mb-1">{pkg.price}</div>
+                  <p className="text-gray-500 text-sm">per undangan</p>
+                </div>
+                <ul className="space-y-3 mb-8">
+                  {pkg.features.map((feature, fidx) => (
+                    <li key={fidx} className="flex items-start gap-2 text-gray-700">
+                      <Check className="text-yellow-500 flex-shrink-0 mt-1" size={18} />
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+                <button
+                  onClick={() => openWhatsApp(`Halo, saya tertarik dengan paket ${pkg.name}`)}
+                  className={`w-full font-bold py-3 rounded-full transition ${
+                    pkg.popular
+                      ? 'bg-yellow-500 hover:bg-yellow-600 text-black'
+                      : 'bg-black hover:bg-yellow-500 text-white hover:text-black'
+                  }`}
+                >
+                  Pesan Paket Ini
+                </button>
+              </div>
+            ))}
+          </div>
+
+          {/* Add-ons */}
+          <div className="mt-16 bg-gradient-to-r from-yellow-500/10 to-yellow-600/10 rounded-2xl p-8 border-2 border-yellow-500/20">
+            <h3 className="text-2xl font-bold text-black mb-6 text-center">Add-ons Tersedia</h3>
+            <div className="grid md:grid-cols-3 gap-6">
+              {[
+                { name: 'Custom Domain', price: '+Rp 100k' },
+                { name: 'Desain Eksklusif', price: '+Rp 150k' },
+                { name: 'Video Cinematic', price: '+Rp 200k' }
+              ].map((addon, idx) => (
+                <div key={idx} className="bg-white rounded-xl p-6 text-center shadow">
+                  <h4 className="font-bold text-black mb-2">{addon.name}</h4>
+                  <p className="text-yellow-600 font-bold text-lg">{addon.price}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimoni Section */}
+      <section id="testimoni" className="py-20 px-4 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold text-black mb-4">
+                Kata <span className="text-yellow-500">Mereka</span>
+            </h2>
+            <p className="text-gray-600 text-lg">Testimoni dari pelanggan yang puas</p>
+          </div>
+        
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                name: 'Sarah & Budi',
+                role: 'Pernikahan',
+                text: 'Undangannya cantik banget! Tamu-tamu kami semua bilang keren dan gampang banget diakses.',
+                rating: 5
+              },
+              {
+                name: 'PT. Maju Jaya',
+                role: 'Corporate Event',
+                text: 'Profesional dan responsif. Undangan untuk launching produk kami jadi sangat elegan.',
+                rating: 5
+              },
+              {
+                name: 'Rini Wijaya',
+                role: 'Ulang Tahun',
+                text: 'Harga terjangkau dengan hasil memuaskan. Proses cepat dan revisi gak ribet!',
+                rating: 5
+              }
+            ].map((testi, idx) => (
+              <div key={idx} className="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl shadow-lg border-2 border-gray-100 hover:border-yellow-500 transition">
+                {/* PLACEHOLDER IMAGE - Ganti dengan foto testimoni atau screenshot */}
+                <div className="bg-gradient-to-br from-yellow-500/10 to-yellow-600/10 rounded-xl h-48 mb-6 flex items-center justify-center border border-yellow-500/20">
+                  <div className="text-center text-yellow-600">
+                    <div className="text-5xl mb-2">📸</div>
+                    <p className="text-sm">Screenshot Testimoni</p>
+                  </div>
+                </div>
+                <div className="flex mb-3">
+                  {[...Array(testi.rating)].map((_, i) => (
+                    <span key={i} className="text-yellow-500 text-xl">⭐</span>
+                  ))}
+                </div>
+                <p className="text-gray-700 italic mb-4">"{testi.text}"</p>
+                <div>
+                  <p className="font-bold text-black">{testi.name}</p>
+                  <p className="text-sm text-gray-500">{testi.role}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-20 px-4 bg-gradient-to-b from-gray-50 to-white">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-black mb-4">
+              Pertanyaan <span className="text-yellow-500">Umum</span>
+            </h2>
+            <p className="text-gray-600 text-lg">Yang sering ditanyakan</p>
+          </div>
+
+          <div className="space-y-4">
+            {[
+              {
+                q: 'Berapa lama proses pembuatan undangan?',
+                a: '1-2 hari kerja setelah data lengkap diterima. Untuk paket Premium bisa lebih cepat.'
+              },
+              {
+                q: 'Apakah bisa revisi desain?',
+                a: 'Tentu! Basic 1x, Standard 3x, Premium unlimited revisi.'
+              },
+              {
+                q: 'Bagaimana cara pembayaran?',
+                a: 'Transfer bank atau e-wallet. DP 50% di awal, pelunasan setelah undangan jadi.'
+              },
+              {
+                q: 'Apakah ada refund jika tidak puas?',
+                a: 'Ada garansi revisi hingga puas. Refund berlaku jika kami gagal deliver sesuai kesepakatan.'
+              },
+              {
+                q: 'Bisa request fitur tambahan?',
+                a: 'Bisa! Konsultasikan kebutuhan Anda dengan tim kami via WhatsApp.'
+              }
+            ].map((faq, idx) => (
+              <details key={idx} className="bg-white rounded-xl shadow-md border-2 border-gray-100 hover:border-yellow-500 transition">
+                <summary className="font-bold text-black p-6 cursor-pointer hover:text-yellow-500 transition">
+                  {faq.q}
+                </summary>
+                <p className="px-6 pb-6 text-gray-700">{faq.a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Closing */}
+      <section className="py-20 px-4 bg-gradient-to-br from-black via-gray-900 to-black text-white">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            Siap Buat Undangan <span className="text-yellow-500">Impian Anda?</span>
+          </h2>
+          <p className="text-xl text-gray-300 mb-8">
+            Jangan tunggu lagi! Hubungi kami sekarang dan wujudkan undangan digital yang berkesan.
+          </p>
+          <button
+            onClick={() => openWhatsApp()}
+            className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-5 px-12 rounded-full text-xl inline-flex items-center gap-3 transition transform hover:scale-110 shadow-2xl"
+          >
+            <MessageCircle size={24} />
+            Chat Admin Sekarang
+          </button>
+          <p className="text-gray-400 mt-6 text-sm">Respons cepat dalam 5 menit! ⚡</p>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-black text-white py-12 px-4 border-t border-yellow-600/20">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-4 gap-8 mb-8">
+            <div>
+              <h3 className="text-2xl font-bold text-yellow-500 mb-4">INVIORY</h3>
+              <p className="text-gray-400 text-sm">
+                Jasa undangan digital modern untuk acara spesial Anda.
+              </p>
+            </div>
+            <div>
+              <h4 className="font-bold mb-4 text-yellow-500">Layanan</h4>
+              <ul className="space-y-2 text-gray-400 text-sm">
+                <li>Undangan Pernikahan</li>
+                <li>Undangan Ulang Tahun</li>
+                <li>Undangan Corporate</li>
+                <li>Custom Design</li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-bold mb-4 text-yellow-500">Kontak</h4>
+              <ul className="space-y-2 text-gray-400 text-sm">
+                <li>📱 WhatsApp: 0812-3456-7890</li>
+                <li>📧 Email: info@inviory.com</li>
+                <li>📍 Sidoarjo, Indonesia</li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-bold mb-4 text-yellow-500">Ikuti Kami</h4>
+              <div className="flex gap-4 text-2xl">
+                <a href="#" className="hover:text-yellow-500 transition">📘</a>
+                <a href="#" className="hover:text-yellow-500 transition">📷</a>
+                <a href="#" className="hover:text-yellow-500 transition">🐦</a>
+              </div>
+            </div>
+          </div>
+          <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
+            <p>&copy; 2025 INVIORY. All rights reserved.</p>
+            <div className="flex gap-6 mt-4 md:mt-0">
+              <a href="#" className="hover:text-yellow-500 transition">Kebijakan Privasi</a>
+              <a href="#" className="hover:text-yellow-500 transition">Syarat & Ketentuan</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+      {/* Floating WhatsApp Button */}
+      <button
+        onClick={() => openWhatsApp()}
+        className="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-2xl transition transform hover:scale-110 z-50 animate-pulse"
+        aria-label="Chat WhatsApp"
+      >
+        <MessageCircle size={28} />
+      </button>
+    </div>
+  );
+}
