@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Menu, X, Check, MessageCircle, ChevronDown } from 'lucide-react';
-import IgLogo from './assets/Ig-logo.svg';
+
 
 export default function InvioryLanding() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -169,7 +169,7 @@ export default function InvioryLanding() {
                   title: 'Birthday Party', 
                   category: 'Acara Pribadi', 
                   desc: 'Fun & colorful theme',
-                  image: '/src/assets/UlangTahun.jpeg'
+                  image: '/UlangTahun.jpeg'
                 },
                 { 
                   title: 'Corporate Event', 
@@ -332,7 +332,7 @@ export default function InvioryLanding() {
             <div className="grid md:grid-cols-3 gap-6">
               {[
                 { name: 'Custom Domain', price: '+Rp 100k' },
-                { name: 'Desain Eksklusif', price: '+Rp 150k' },
+                { name: 'Desain Eksklusif', price: '+Rp 10k' },
                 { name: 'Video Cinematic', price: '+Rp 200k' }
               ].map((addon, idx) => (
                 <div key={idx} className="bg-white rounded-xl p-6 text-center shadow">
@@ -507,7 +507,7 @@ export default function InvioryLanding() {
                   </svg>
                 </a>
                 
-                {/* Instagram Logo - Using External SVG */}
+                {/* Instagram Logo */}
                 <a 
                   href="https://www.instagram.com/invioryofficial" 
                   target="_blank" 
@@ -516,7 +516,7 @@ export default function InvioryLanding() {
                   aria-label="Instagram INVIORY"
                 >
                   <img 
-                    src={IgLogo} 
+                    src="/instagram-logo.svg"
                     alt="Instagram" 
                     className="w-5 h-5"
                   />
