@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Menu, X, Check, MessageCircle, ChevronDown } from 'lucide-react';
+import IgLogo from './assets/Ig-logo.svg';
 
 export default function InvioryLanding() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('');
 
   // Smooth scroll handler
   const scrollToSection = (id) => {
@@ -14,9 +14,9 @@ export default function InvioryLanding() {
     }
   };
 
-  // WhatsApp handler - GANTI NOMOR WA KAMU DI SINI
+  // WhatsApp handler
   const openWhatsApp = (message = '') => {
-    const phoneNumber = '6281234567890'; // GANTI DENGAN NOMOR WA KAMU (format: 628xxx)
+    const phoneNumber = '6282228740260';
     const defaultMessage = message || 'Halo, saya tertarik dengan jasa undangan digital INVIORY!';
     const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(defaultMessage)}`;
     window.open(url, '_blank');
@@ -148,47 +148,71 @@ export default function InvioryLanding() {
       </section>
 
       {/* Template Section */}
-      <section id="template" className="py-20 px-4 bg-gradient-to-b from-gray-50 to-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-black mb-4">
-              Contoh <span className="text-yellow-500">Template</span>
-            </h2>
-            <p className="text-gray-600 text-lg">Pilihan desain untuk berbagai acara</p>
-          </div>
+        <section id="template" className="py-20 px-4 bg-gradient-to-b from-gray-50 to-white">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold text-black mb-4">
+                Contoh <span className="text-yellow-500">Template</span>
+              </h2>
+              <p className="text-gray-600 text-lg">Pilihan desain untuk berbagai acara</p>
+            </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              { title: 'Wedding Elegant', category: 'Pernikahan', desc: 'Desain klasik & romantis' },
-              { title: 'Birthday Party', category: 'Acara Pribadi', desc: 'Fun & colorful theme' },
-              { title: 'Corporate Event', category: 'Event Perusahaan', desc: 'Professional & modern' }
-            ].map((template, idx) => (
-              <div key={idx} className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition transform hover:scale-105">
-                {/* PLACEHOLDER IMAGE - Ganti dengan screenshot template */}
-                <div className="bg-gradient-to-br from-yellow-500/10 to-yellow-800/10 h-80 flex items-center justify-center border-b-4 border-yellow-500">
-                  <div className="text-center text-yellow-600">
-                    <div className="text-6xl mb-4">🎴</div>
-                    <p className="text-xl font-semibold">{template.title}</p>
+            <div className="grid md:grid-cols-3 gap-8">
+              {[
+                { 
+                  title: 'Wedding Elegant', 
+                  category: 'Pernikahan', 
+                  desc: 'Desain klasik & romantis',
+                  image: null // Ganti dengan '/src/assets/Wedding.jpeg' kalau ada foto
+                },
+                { 
+                  title: 'Birthday Party', 
+                  category: 'Acara Pribadi', 
+                  desc: 'Fun & colorful theme',
+                  image: '/src/assets/UlangTahun.jpeg'
+                },
+                { 
+                  title: 'Corporate Event', 
+                  category: 'Event Perusahaan', 
+                  desc: 'Professional & modern',
+                  image: null // Ganti dengan '/src/assets/Corporate.jpeg' kalau ada foto
+                }
+              ].map((template, idx) => (
+                <div key={idx} className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition transform hover:scale-105">
+                  {/* IMAGE - Pakai foto kalau ada, placeholder kalau tidak */}
+                  {template.image ? (
+                    <img 
+                      src={template.image} 
+                      alt={template.title} 
+                      className="w-full h-80 object-cover border-b-4 border-yellow-500"
+                    />
+                  ) : (
+                    <div className="bg-gradient-to-br from-yellow-500/10 to-yellow-800/10 h-80 flex items-center justify-center border-b-4 border-yellow-500">
+                      <div className="text-center text-yellow-600">
+                        <div className="text-6xl mb-4">🎴</div>
+                        <p className="text-xl font-semibold">{template.title}</p>
+                      </div>
+                    </div>
+                  )}
+                  
+                  <div className="p-6">
+                    <span className="bg-yellow-500 text-black text-xs font-bold px-3 py-1 rounded-full">
+                      {template.category}
+                    </span>
+                    <h3 className="text-xl font-bold text-black mt-3 mb-2">{template.title}</h3>
+                    <p className="text-gray-600 mb-4">{template.desc}</p>
+                    <button
+                      onClick={() => openWhatsApp(`Halo, saya tertarik dengan template ${template.title}`)}
+                      className="w-full bg-black hover:bg-yellow-500 text-white hover:text-black font-bold py-3 rounded-full transition"
+                    >
+                      Pilih Template
+                    </button>
                   </div>
                 </div>
-                <div className="p-6">
-                  <span className="bg-yellow-500 text-black text-xs font-bold px-3 py-1 rounded-full">
-                    {template.category}
-                  </span>
-                  <h3 className="text-xl font-bold text-black mt-3 mb-2">{template.title}</h3>
-                  <p className="text-gray-600 mb-4">{template.desc}</p>
-                  <button
-                    onClick={() => openWhatsApp(`Halo, saya tertarik dengan template ${template.title}`)}
-                    className="w-full bg-black hover:bg-yellow-500 text-white hover:text-black font-bold py-3 rounded-full transition"
-                  >
-                    Pilih Template
-                  </button>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
       {/* Cara Pemesanan Section */}
       <section id="cara-pesan" className="py-20 px-4 bg-black text-white">
@@ -245,7 +269,7 @@ export default function InvioryLanding() {
             {[
               {
                 name: 'Basic',
-                price: 'Rp 1.00 - 3.000',
+                price: 'Rp 1.000 - 3.000',
                 features: ['1 Template Standar', '1x Revisi', 'Fitur RSVP', 'Musik Background', 'Support via Chat'],
                 popular: false
               },
@@ -325,12 +349,12 @@ export default function InvioryLanding() {
       <section id="testimoni" className="py-20 px-4 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold text-black mb-4">
-                Kata <span className="text-yellow-500">Mereka</span>
+            <h2 className="text-4xl md:text-5xl font-bold text-black mb-4">
+              Kata <span className="text-yellow-500">Mereka</span>
             </h2>
             <p className="text-gray-600 text-lg">Testimoni dari pelanggan yang puas</p>
           </div>
-        
+
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
@@ -462,17 +486,54 @@ export default function InvioryLanding() {
             <div>
               <h4 className="font-bold mb-4 text-yellow-500">Kontak</h4>
               <ul className="space-y-2 text-gray-400 text-sm">
-                <li>📱 WhatsApp: 0812-3456-7890</li>
+                <li>📱 WhatsApp: 0822-2874-0260</li>
                 <li>📧 Email: info@inviory.com</li>
                 <li>📍 Sidoarjo, Indonesia</li>
               </ul>
             </div>
             <div>
               <h4 className="font-bold mb-4 text-yellow-500">Ikuti Kami</h4>
-              <div className="flex gap-4 text-2xl">
-                <a href="#" className="hover:text-yellow-500 transition">📘</a>
-                <a href="#" className="hover:text-yellow-500 transition">📷</a>
-                <a href="#" className="hover:text-yellow-500 transition">🐦</a>
+              <div className="flex gap-4">
+                {/* Facebook Logo */}
+                <a 
+                  href="https://www.facebook.com/INVIORY/" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="w-10 h-10 bg-[#1877F2] rounded-full flex items-center justify-center hover:opacity-80 transition"
+                  aria-label="Facebook INVIORY"
+                >
+                  <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                  </svg>
+                </a>
+                
+                {/* Instagram Logo - Using External SVG */}
+                <a 
+                  href="https://www.instagram.com/invioryofficial" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center hover:opacity-80 transition"
+                  aria-label="Instagram INVIORY"
+                >
+                  <img 
+                    src={IgLogo} 
+                    alt="Instagram" 
+                    className="w-5 h-5"
+                  />
+                </a>
+                
+                {/* TikTok Logo */}
+                <a 
+                  href="https://www.tiktok.com/@inviory.official?_r=1&_t=ZS-91aQDnLVKHX" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="w-10 h-10 bg-black border border-gray-600 rounded-full flex items-center justify-center hover:bg-gray-800 transition"
+                  aria-label="TikTok INVIORY"
+                >
+                  <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+                  </svg>
+                </a>
               </div>
             </div>
           </div>
