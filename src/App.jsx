@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Menu, X, Check, MessageCircle, ChevronDown } from 'lucide-react';
-
+import IgLogo from './assets/Ig-logo.svg';
 
 export default function InvioryLanding() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -507,7 +507,7 @@ export default function InvioryLanding() {
                   </svg>
                 </a>
                 
-                {/* Instagram Logo */}
+                {/* Instagram Logo - Using External SVG */}
                 <a 
                   href="https://www.instagram.com/invioryofficial" 
                   target="_blank" 
@@ -516,7 +516,7 @@ export default function InvioryLanding() {
                   aria-label="Instagram INVIORY"
                 >
                   <img 
-                    src="/instagram-logo.svg"
+                    src={IgLogo} 
                     alt="Instagram" 
                     className="w-5 h-5"
                   />
