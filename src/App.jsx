@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Menu, X, Check, MessageCircle, ChevronDown } from 'lucide-react';
-import IgLogo from './assets/Ig-logo.svg';
+
 
 export default function InvioryLanding() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -20,6 +20,13 @@ export default function InvioryLanding() {
     const defaultMessage = message || 'Halo, saya tertarik dengan jasa undangan digital INVIORY!';
     const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(defaultMessage)}`;
     window.open(url, '_blank');
+  };
+
+  // Copy to clipboard function
+  const copyToClipboard = (text, type) => {
+    navigator.clipboard.writeText(text).then(() => {
+      alert(`${type} berhasil disalin!`);
+    });
   };
 
   return (
@@ -486,9 +493,56 @@ export default function InvioryLanding() {
             <div>
               <h4 className="font-bold mb-4 text-yellow-500">Kontak</h4>
               <ul className="space-y-2 text-gray-400 text-sm">
-                <li>📱 WhatsApp: 0822-2874-0260</li>
-                <li>📧 Email: info@inviory.com</li>
-                <li>📍 Sidoarjo, Indonesia</li>
+                {/* WhatsApp dengan link */}
+                <li className="flex items-center justify-between group">
+                  <a 
+                    href="https://wa.me/6282228740260" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="hover:text-yellow-500 transition flex items-center gap-2 flex-1"
+                  >
+                    <span>📱</span>
+                    <span>WhatsApp: 0822-2874-0260</span>
+                  </a>
+                  <button 
+                    onClick={() => copyToClipboard('082228740260', 'Nomor WhatsApp')}
+                    className="opacity-0 group-hover:opacity-100 transition text-xs text-gray-500 hover:text-yellow-500 ml-2"
+                    title="Salin nomor"
+                  >
+                    📋
+                  </button>
+                </li>
+                
+                {/* Email dengan link */}
+                <li className="flex items-center justify-between group">
+                  <a 
+                    href="mailto:info@inviory.com?subject=Konsultasi%20Undangan%20Digital%20INVIORY" 
+                    className="hover:text-yellow-500 transition flex items-center gap-2 flex-1"
+                  >
+                    <span>📧</span>
+                    <span>Email: info@inviory.com</span>
+                  </a>
+                  <button 
+                    onClick={() => copyToClipboard('info@inviory.com', 'Email')}
+                    className="opacity-0 group-hover:opacity-100 transition text-xs text-gray-500 hover:text-yellow-500 ml-2"
+                    title="Salin email"
+                  >
+                    📋
+                  </button>
+                </li>
+                
+                {/* Lokasi dengan link maps */}
+                <li>
+                  <a 
+                    href="https://maps.google.com/?q=Sidoarjo,East+Java,Indonesia" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="hover:text-yellow-500 transition flex items-center gap-2"
+                  >
+                    <span>📍</span>
+                    <span>Sidoarjo, Indonesia</span>
+                  </a>
+                </li>
               </ul>
             </div>
             <div>
@@ -507,20 +561,20 @@ export default function InvioryLanding() {
                   </svg>
                 </a>
                 
-                {/* Instagram Logo - Using External SVG */}
-                <a 
-                  href="https://www.instagram.com/invioryofficial" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center hover:opacity-80 transition"
-                  aria-label="Instagram INVIORY"
-                >
-                  <img 
-                    src={IgLogo} 
-                    alt="Instagram" 
-                    className="w-5 h-5"
-                  />
-                </a>
+                {/* Instagram Logo - Simple Version */}
+                  <a 
+                    href="https://www.instagram.com/invioryofficial" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center hover:opacity-80 transition"
+                    aria-label="Instagram INVIORY"
+                  >
+                    <img 
+                      src="/IgLogo.svg" 
+                      alt="Instagram" 
+                      className="w-5 h-5"
+                    />
+                  </a>
                 
                 {/* TikTok Logo */}
                 <a 
