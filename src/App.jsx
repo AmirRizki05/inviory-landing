@@ -76,51 +76,49 @@ export default function InvioryLanding() {
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <section id="beranda" className="pt-24 pb-16 px-4 bg-gradient-to-br from-black via-gray-900 to-black">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-12 items-center min-h-[80vh]">
-            <div className="text-white space-y-6">
-              <h1 className="text-5xl md:text-6xl font-bold leading-tight">
-                Undangan Digital<br />
-                <span className="text-yellow-500">Elegan & Mudah</span><br />
-                Dibagikan
-              </h1>
-              <p className="text-xl text-gray-300">
-                Ciptakan undangan pernikahan, ulang tahun, atau event spesial Anda dengan desain modern dan interaktif. Hemat, cepat, dan ramah lingkungan.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                <button
-                  onClick={() => openWhatsApp()}
-                  className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-4 px-8 rounded-full flex items-center justify-center gap-2 transition transform hover:scale-105"
-                >
-                  <MessageCircle size={20} />
-                  Pesan via WhatsApp
-                </button>
-                <button
-                  onClick={() => scrollToSection('template')}
-                  className="border-2 border-yellow-500 text-yellow-500 hover:bg-yellow-500 hover:text-black font-bold py-4 px-8 rounded-full transition"
-                >
-                  Lihat Template
-                </button>
-              </div>
-            </div>
-            <div className="relative">
-              {/* PLACEHOLDER IMAGE - Ganti dengan gambar hero kamu */}
-              <div className="bg-gradient-to-br from-yellow-600/20 to-yellow-800/20 rounded-3xl h-[500px] flex items-center justify-center border-2 border-yellow-600/30">
-                <div className="text-center text-yellow-500">
-                  <div className="text-6xl mb-4">📱</div>
-                  <p className="text-xl font-semibold">Hero Image</p>
-                  <p className="text-sm text-gray-400 mt-2">Ganti dengan mockup undangan</p>
-                </div>
-              </div>
+          {/* Hero Section */}
+    <section id="beranda" className="pt-24 pb-16 px-4 bg-gradient-to-br from-black via-gray-900 to-black">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-12 items-center min-h-[80vh]">
+          <div className="text-white space-y-6">
+            <h1 className="text-5xl md:text-6xl font-bold leading-tight">
+              Undangan Digital<br />
+              <span className="text-yellow-500">Elegan & Mudah</span><br />
+              Dibagikan
+            </h1>
+            <p className="text-xl text-gray-300">
+              Ciptakan undangan pernikahan, ulang tahun, atau event spesial Anda dengan desain modern dan interaktif. Hemat, cepat, dan ramah lingkungan.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 pt-4">
+              <button
+                onClick={() => openWhatsApp()}
+                className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-4 px-8 rounded-full flex items-center justify-center gap-2 transition transform hover:scale-105"
+              >
+                <MessageCircle size={20} />
+                Pesan via WhatsApp
+              </button>
+              <button
+                onClick={() => scrollToSection('template')}
+                className="border-2 border-yellow-500 text-yellow-500 hover:bg-yellow-500 hover:text-black font-bold py-4 px-8 rounded-full transition"
+              >
+                Lihat Template
+              </button>
             </div>
           </div>
+          <div className="relative">
+            {/* GANTI PLACEHOLDER DENGAN FOTO HERO */}
+            <img 
+              src="/HeroImage.png" 
+              alt="Preview Undangan Digital INVIORY"
+              className="rounded-3xl h-[500px] w-full object-cover border-2 border-yellow-600/30 shadow-2xl"
+            />
+          </div>
         </div>
-        <div className="text-center mt-12 animate-bounce">
-          <ChevronDown className="mx-auto text-yellow-500" size={32} />
-        </div>
-      </section>
+      </div>
+      <div className="text-center mt-12 animate-bounce">
+        <ChevronDown className="mx-auto text-yellow-500" size={32} />
+      </div>
+    </section>
 
       {/* Keunggulan Section */}
       <section id="keunggulan" className="py-20 px-4 bg-white">
@@ -170,7 +168,7 @@ export default function InvioryLanding() {
                   title: 'Wedding Elegant', 
                   category: 'Pernikahan', 
                   desc: 'Desain klasik & romantis',
-                  image: null // Ganti dengan '/src/assets/Wedding.jpeg' kalau ada foto
+                  image: '/Wedding.png'
                 },
                 { 
                   title: 'Birthday Party', 
@@ -182,7 +180,7 @@ export default function InvioryLanding() {
                   title: 'Corporate Event', 
                   category: 'Event Perusahaan', 
                   desc: 'Professional & modern',
-                  image: null // Ganti dengan '/src/assets/Corporate.jpeg' kalau ada foto
+                  image: '/CompanyEvent.png'
                 }
               ].map((template, idx) => (
                 <div key={idx} className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition transform hover:scale-105">
