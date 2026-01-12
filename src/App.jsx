@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Menu, X, Check, MessageCircle, ChevronDown } from 'lucide-react';
 
-
 export default function InvioryLanding() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -35,7 +34,16 @@ export default function InvioryLanding() {
       <nav className="fixed top-0 w-full bg-black/95 backdrop-blur-sm z-50 border-b border-yellow-600/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            <div className="text-2xl font-bold text-yellow-500">INVIORY</div>
+            {/* Logo + Brand Name */}
+            <div className="flex items-center gap-3">
+              {/* LOGO INVIORY */}
+              <img 
+                src="/favicon.ico" 
+                alt="INVIORY Logo" 
+                className="w-8 h-8 object-contain"
+              />
+              <div className="text-2xl font-bold text-yellow-500">INVIORY</div>
+            </div>
             
             {/* Desktop Menu */}
             <div className="hidden md:flex space-x-8">
@@ -76,49 +84,48 @@ export default function InvioryLanding() {
         </div>
       </nav>
 
-          {/* Hero Section */}
-    <section id="beranda" className="pt-24 pb-16 px-4 bg-gradient-to-br from-black via-gray-900 to-black">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid md:grid-cols-2 gap-12 items-center min-h-[80vh]">
-          <div className="text-white space-y-6">
-            <h1 className="text-5xl md:text-6xl font-bold leading-tight">
-              Undangan Digital<br />
-              <span className="text-yellow-500">Elegan & Mudah</span><br />
-              Dibagikan
-            </h1>
-            <p className="text-xl text-gray-300">
-              Ciptakan undangan pernikahan, ulang tahun, atau event spesial Anda dengan desain modern dan interaktif. Hemat, cepat, dan ramah lingkungan.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <button
-                onClick={() => openWhatsApp()}
-                className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-4 px-8 rounded-full flex items-center justify-center gap-2 transition transform hover:scale-105"
-              >
-                <MessageCircle size={20} />
-                Pesan via WhatsApp
-              </button>
-              <button
-                onClick={() => scrollToSection('template')}
-                className="border-2 border-yellow-500 text-yellow-500 hover:bg-yellow-500 hover:text-black font-bold py-4 px-8 rounded-full transition"
-              >
-                Lihat Template
-              </button>
+      {/* Hero Section */}
+      <section id="beranda" className="pt-24 pb-16 px-4 bg-gradient-to-br from-black via-gray-900 to-black">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-12 items-center min-h-[80vh]">
+            <div className="text-white space-y-6">
+              <h1 className="text-5xl md:text-6xl font-bold leading-tight">
+                Undangan Digital<br />
+                <span className="text-yellow-500">Elegan & Mudah</span><br />
+                Dibagikan
+              </h1>
+              <p className="text-xl text-gray-300">
+                Ciptakan undangan pernikahan, ulang tahun, atau event spesial Anda dengan desain modern dan interaktif. Hemat, cepat, dan ramah lingkungan.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 pt-4">
+                <button
+                  onClick={() => openWhatsApp()}
+                  className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-4 px-8 rounded-full flex items-center justify-center gap-2 transition transform hover:scale-105"
+                >
+                  <MessageCircle size={20} />
+                  Pesan via WhatsApp
+                </button>
+                <button
+                  onClick={() => scrollToSection('template')}
+                  className="border-2 border-yellow-500 text-yellow-500 hover:bg-yellow-500 hover:text-black font-bold py-4 px-8 rounded-full transition"
+                >
+                  Lihat Template
+                </button>
+              </div>
+            </div>
+            <div className="relative">
+              <img 
+                src="/HeroImage.png" 
+                alt="Preview Undangan Digital INVIORY"
+                className="rounded-3xl h-[500px] w-full object-cover border-2 border-yellow-600/30 shadow-2xl"
+              />
             </div>
           </div>
-          <div className="relative">
-            {/* GANTI PLACEHOLDER DENGAN FOTO HERO */}
-            <img 
-              src="/HeroImage.png" 
-              alt="Preview Undangan Digital INVIORY"
-              className="rounded-3xl h-[500px] w-full object-cover border-2 border-yellow-600/30 shadow-2xl"
-            />
-          </div>
         </div>
-      </div>
-      <div className="text-center mt-12 animate-bounce">
-        <ChevronDown className="mx-auto text-yellow-500" size={32} />
-      </div>
-    </section>
+        <div className="text-center mt-12 animate-bounce">
+          <ChevronDown className="mx-auto text-yellow-500" size={32} />
+        </div>
+      </section>
 
       {/* Keunggulan Section */}
       <section id="keunggulan" className="py-20 px-4 bg-white">
@@ -153,71 +160,71 @@ export default function InvioryLanding() {
       </section>
 
       {/* Template Section */}
-        <section id="template" className="py-20 px-4 bg-gradient-to-b from-gray-50 to-white">
-          <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold text-black mb-4">
-                Contoh <span className="text-yellow-500">Template</span>
-              </h2>
-              <p className="text-gray-600 text-lg">Pilihan desain untuk berbagai acara</p>
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-8">
-              {[
-                { 
-                  title: 'Wedding Elegant', 
-                  category: 'Pernikahan', 
-                  desc: 'Desain klasik & romantis',
-                  image: '/Wedding.png'
-                },
-                { 
-                  title: 'Birthday Party', 
-                  category: 'Acara Pribadi', 
-                  desc: 'Fun & colorful theme',
-                  image: '/UlangTahun.jpeg'
-                },
-                { 
-                  title: 'Corporate Event', 
-                  category: 'Event Perusahaan', 
-                  desc: 'Professional & modern',
-                  image: '/CompanyEvent.png'
-                }
-              ].map((template, idx) => (
-                <div key={idx} className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition transform hover:scale-105">
-                  {/* IMAGE - Pakai foto kalau ada, placeholder kalau tidak */}
-                  {template.image ? (
-                    <img 
-                      src={template.image} 
-                      alt={template.title} 
-                      className="w-full h-80 object-cover border-b-4 border-yellow-500"
-                    />
-                  ) : (
-                    <div className="bg-gradient-to-br from-yellow-500/10 to-yellow-800/10 h-80 flex items-center justify-center border-b-4 border-yellow-500">
-                      <div className="text-center text-yellow-600">
-                        <div className="text-6xl mb-4">🎴</div>
-                        <p className="text-xl font-semibold">{template.title}</p>
-                      </div>
-                    </div>
-                  )}
-                  
-                  <div className="p-6">
-                    <span className="bg-yellow-500 text-black text-xs font-bold px-3 py-1 rounded-full">
-                      {template.category}
-                    </span>
-                    <h3 className="text-xl font-bold text-black mt-3 mb-2">{template.title}</h3>
-                    <p className="text-gray-600 mb-4">{template.desc}</p>
-                    <button
-                      onClick={() => openWhatsApp(`Halo, saya tertarik dengan template ${template.title}`)}
-                      className="w-full bg-black hover:bg-yellow-500 text-white hover:text-black font-bold py-3 rounded-full transition"
-                    >
-                      Pilih Template
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
+      <section id="template" className="py-20 px-4 bg-gradient-to-b from-gray-50 to-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-black mb-4">
+              Contoh <span className="text-yellow-500">Template</span>
+            </h2>
+            <p className="text-gray-600 text-lg">Pilihan desain untuk berbagai acara</p>
           </div>
-        </section>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              { 
+                title: 'Wedding Elegant', 
+                category: 'Pernikahan', 
+                desc: 'Desain klasik & romantis',
+                image: '/Wedding.png'
+              },
+              { 
+                title: 'Birthday Party', 
+                category: 'Acara Pribadi', 
+                desc: 'Fun & colorful theme',
+                image: '/UlangTahun.jpeg'
+              },
+              { 
+                title: 'Corporate Event', 
+                category: 'Event Perusahaan', 
+                desc: 'Professional & modern',
+                image: '/CompanyEvent.png'
+              }
+            ].map((template, idx) => (
+              <div key={idx} className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition transform hover:scale-105">
+                {/* IMAGE - Pakai foto kalau ada, placeholder kalau tidak */}
+                {template.image ? (
+                  <img 
+                    src={template.image} 
+                    alt={template.title} 
+                    className="w-full h-80 object-cover border-b-4 border-yellow-500"
+                  />
+                ) : (
+                  <div className="bg-gradient-to-br from-yellow-500/10 to-yellow-800/10 h-80 flex items-center justify-center border-b-4 border-yellow-500">
+                    <div className="text-center text-yellow-600">
+                      <div className="text-6xl mb-4">🎴</div>
+                      <p className="text-xl font-semibold">{template.title}</p>
+                    </div>
+                  </div>
+                )}
+                
+                <div className="p-6">
+                  <span className="bg-yellow-500 text-black text-xs font-bold px-3 py-1 rounded-full">
+                    {template.category}
+                  </span>
+                  <h3 className="text-xl font-bold text-black mt-3 mb-2">{template.title}</h3>
+                  <p className="text-gray-600 mb-4">{template.desc}</p>
+                  <button
+                    onClick={() => openWhatsApp(`Halo, saya tertarik dengan template ${template.title}`)}
+                    className="w-full bg-black hover:bg-yellow-500 text-white hover:text-black font-bold py-3 rounded-full transition"
+                  >
+                    Pilih Template
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Cara Pemesanan Section */}
       <section id="cara-pesan" className="py-20 px-4 bg-black text-white">
@@ -274,19 +281,19 @@ export default function InvioryLanding() {
             {[
               {
                 name: 'Basic',
-                price: 'Rp 1.000 - 3.000',
-                features: ['1 Template Standar', '1x Revisi', 'Fitur RSVP', 'Musik Background', 'Support via Chat'],
+                price: 'Rp 55.000',
+                features: ['1 Template Standar', '1x Revisi', 'Fitur RSVP', 'Musik Background', 'Support via Chat','Maps '],
                 popular: false
               },
               {
                 name: 'Standard',
-                price: 'Rp 4.000 - 8.000',
+                price: 'Rp 75.000',
                 features: ['Custom Design', '3x Revisi', 'RSVP + Gallery', 'Countdown Timer', 'Google Maps', 'Support Prioritas'],
-                popular: true
+                popular: false
               },
               {
                 name: 'Premium',
-                price: 'Rp 10.000 - 15.000',
+                price: 'Rp 90.000',
                 features: ['Design Eksklusif', 'Unlimited Revisi', 'Semua Fitur Lengkap', 'Video Opening', 'Custom Domain', 'Dedicated Support'],
                 popular: false
               }
@@ -559,20 +566,20 @@ export default function InvioryLanding() {
                   </svg>
                 </a>
                 
-                {/* Instagram Logo - Simple Version */}
-                  <a 
-                    href="https://www.instagram.com/invioryofficial" 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center hover:opacity-80 transition"
-                    aria-label="Instagram INVIORY"
-                  >
-                    <img 
-                      src="/IgLogo.svg" 
-                      alt="Instagram" 
-                      className="w-5 h-5"
-                    />
-                  </a>
+                {/* Instagram Logo */}
+                <a 
+                  href="https://www.instagram.com/invioryofficial" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center hover:opacity-80 transition"
+                  aria-label="Instagram INVIORY"
+                >
+                  <img 
+                    src="/IgLogo.svg" 
+                    alt="Instagram" 
+                    className="w-5 h-5"
+                  />
+                </a>
                 
                 {/* TikTok Logo */}
                 <a 
@@ -599,7 +606,7 @@ export default function InvioryLanding() {
         </div>
       </footer>
 
-      {/* Floating WhatsApp Button */}
+      {/* Floating WhatsApp Button - DI KANAN BAWAH TANPA LOGO WA */}
       <button
         onClick={() => openWhatsApp()}
         className="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-2xl transition transform hover:scale-110 z-50 animate-pulse"
